@@ -19,3 +19,14 @@ class CircleShape(pygame.sprite.Sprite):
     def update(self, dt):
         # sub-classes must override
         pass
+
+    def check_collision(self, other) :
+        if (isinstance(other, CircleShape)) :
+            distance = self.position.distance_to(other.position)
+            radius_sum = self.radius + other.radius
+            if (distance > radius_sum) :
+                return False
+            else :
+                return True
+        else :
+            raise TypeError("Can only check for collission between 2 circleshapes")
